@@ -73,7 +73,7 @@ export default {
 
 <style lang="scss">
 @import "../../vuestic-sass/resources/resources";
-$top-nav-height: 4.0625rem;
+$top-nav-height: 2.0625rem;
 $top-nav-bg: $dark-blue;
 $nav-mobile-px: 1rem;
 $nav-padding-left: 1rem;
