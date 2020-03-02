@@ -38,7 +38,7 @@
       class="va-card__body"
       :class="computedCardBodyClass"
     >
-      <slot/>
+      <slot class="card-body-content"/>
     </div>
   </div>
 </template>
@@ -123,6 +123,8 @@ export default {
 
 <style lang="scss">
 @import "../../vuestic-sass/resources/resources";
+.card-body-content{
+  margin-top: 0.75rem;}
 
 .va-card {
   border-radius: $card-border-radius;
@@ -138,7 +140,7 @@ export default {
     &-inner {
       display: flex;
       padding: 0.5rem $card-padding;
-      min-height: 3.5rem;
+      min-height: 2.5rem;
       align-items: center;
     }
 
