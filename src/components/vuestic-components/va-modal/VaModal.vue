@@ -105,6 +105,7 @@ export default {
     onOk: Function,
     onCancel: Function,
     withoutTransitions: Boolean,
+    autoClose: {type:Boolean, default:true}
   },
   computed: {
     valueProxy: {
@@ -174,7 +175,9 @@ export default {
       this.$emit('cancel')
     },
     ok () {
-      this.close()
+      if (this.autoClose){
+        this.close()
+      }
       this.$emit('ok')
     },
     checkOutside (e) {
