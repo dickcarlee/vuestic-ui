@@ -98,7 +98,7 @@ export default {
       type: String,
       default: 'medium',
       validator: value => {
-        return ['medium', 'small', 'large'].includes(value)
+        return ['medium', 'small', 'large', 'huge'].includes(value)
       },
     },
     fixedLayout: Boolean,
@@ -342,6 +342,14 @@ export default {
 
       .va-modal__inner {
         max-width: map-get($grid-breakpoints, lg);
+      }
+    }
+
+    &-huge {
+      max-width: map-get($grid-breakpoints, xl);
+
+      .va-modal__inner {
+        max-width: map-get($grid-breakpoints, xl);
       }
     }
   }
