@@ -6,14 +6,12 @@
       @mouseenter="updateHoverState(true)"
       @mouseleave="updateHoverState(false)"
       @click.stop.prevent="toggleMenuItem()"
-      :style="sidebarLinkStyles"
       v-if="!minimized"
       :class="computedLinkClass">
       <div class="va-sidebar-link__content">
         <va-icon
           v-if="icon"
           class="va-sidebar-link__content__icon"
-          :style="iconStyles"
           :name="icon"
         />
         <span class="va-sidebar-link__content__title">
@@ -23,7 +21,6 @@
         </span>
         <va-icon
           class="va-sidebar-link-group__dropdown-icon"
-          :style="iconStyles"
           :name="`fa fa-angle-${expanded ? 'up' : 'down'}`"/>
       </div>
     </a>
@@ -56,14 +53,12 @@
           <va-icon
             v-if="icon"
             class="va-sidebar-link__content__icon"
-            :style="iconStyles"
             :name="icon"
           />
         </div>
         <va-icon
           name="material-icons"
           class="va-sidebar-link__after"
-          :style="iconStyles"
         >
           more_horiz
         </va-icon>
@@ -79,187 +74,219 @@
 </template>
 
 <script>
-import Expanding from 'vue-bulma-expanding/src/Expanding'
-import VaIcon from '../va-icon/VaIcon'
-import { hex2hsl } from '../../../services/color-functions'
+  import Expanding from 'vue-bulma-expanding/src/Expanding'
+  import VaIcon from '../va-icon/VaIcon'
+  import {hex2hsl} from '../../../services/color-functions'
 
-export default {
-  name: 'va-sidebar-link-group',
-  props: {
-    icon: [String, Array],
-    title: String,
-    minimized: Boolean,
-    activeByDefault: Boolean,
-    children: Array,
-    color: {
-      type: String,
-      default: 'secondary',
+  export default {
+    name: 'va-sidebar-link-group',
+    props: {
+      icon: [String, Array],
+      title: String,
+      minimized: Boolean,
+      activeByDefault: Boolean,
+      children: Array,
+      color: {
+        type: String,
+        default: 'secondary',
+      },
     },
-  },
-  components: {
-    VaIcon,
-    Expanding,
-  },
-  data () {
-    return {
-      isActive: this.activeByDefault,
-      isHovered: false,
-      expanded: this.expanded,
-      dropdownOpened: false,
-    }
-  },
-  mounted () {
-    this.updateActiveState()
-  },
-  watch: {
-    $route () {
-      this.$nextTick(() => {
-        this.updateActiveState()
-      })
+    components: {
+      VaIcon,
+      Expanding,
     },
-    minimized (value) {
-      if (!value) {
-        this.isActive = false
-      } else {
-        this.updateActiveState()
-      }
-    },
-  },
-  methods: {
-    toggleMenuItem () {
-      this.expanded = !this.expanded
-    },
-    updateHoverState () {
-      this.isHovered = !this.isHovered
-    },
-    updateActiveState () {
-      const active = this.children.some(item => item.name === this.$route.name)
-
-      this.isActive = this.minimized ? active : false
-      this.expanded = active
-    },
-  },
-  computed: {
-    computedLinkClass () {
+    data() {
       return {
-        'va-sidebar-link': true,
-        'va-sidebar-link--expanded': this.expanded,
-        'va-sidebar-link--active': this.isActive,
+        isActive: this.activeByDefault,
+        isHovered: false,
+        expanded: this.expanded,
+        dropdownOpened: false,
       }
     },
-    computedClass () {
-      return {
-        'va-sidebar-link-group': true,
-        'va-sidebar-link-group--minimized': this.minimized,
-      }
+    mounted() {
+      this.updateActiveState()
     },
-    sidebarLinkStyles () {
-      let getBackgroundColor = () => {
-        let color = hex2hsl(this.$themes.secondary)
-
-        color.s -= 13
-        color.l += 15
-
-        if (color.s < 0) color.s = 0
-        if (color.l > 100) color.l = 100
-
-        return color.css
-      }
-
-      if (this.isHovered || this.isActive) {
-        return {
-          color: this.$themes['primary'],
-          backgroundColor: getBackgroundColor(),
-          borderColor: this.isActive ? this.$themes['primary'] : 'transparent',
+    watch: {
+      // $route () {
+      //   this.$nextTick(() => {
+      //     this.updateActiveState()
+      //   })
+      // },
+      minimized(value) {
+        if (!value) {
+          this.isActive = false
+        } else {
+          this.updateActiveState()
         }
-      } else return {}
+      },
     },
-    iconStyles () {
-      return (this.isHovered || this.isActive)
-        ? { color: this.$themes['primary'] }
-        : { color: 'white' }
+    methods: {
+      toggleMenuItem() {
+        this.expanded = !this.expanded
+      },
+      updateHoverState() {
+        this.isHovered = !this.isHovered
+      },
+      updateActiveState() {
+        const active = this.children.some(item => item.name === this.$route.name)
+
+        this.isActive = this.minimized ? active : false
+        this.expanded = active
+      },
     },
-  },
-}
+    computed: {
+      computedLinkClass() {
+        return {
+          'va-sidebar-link': true,
+          'va-sidebar-link--expanded': this.expanded,
+          'va-sidebar-link--active': this.isActive,
+        }
+      },
+      computedClass() {
+        return {
+          'va-sidebar-link-group': true,
+          'va-sidebar-link-group--minimized': this.minimized,
+        }
+      },
+      // sidebarLinkStyles() {
+      //   let getBackgroundColor = () => {
+      //     let color = hex2hsl(this.$themes.secondary)
+      //     if (color.s < 0) color.s = 0
+      //     if (color.l > 100) color.l = 100
+      //     return color.css
+      //   }
+      //
+      //   if (this.isHovered || this.isActive) {
+      //     return {
+      //       color: this.$themes['primary'],
+      //       backgroundColor: getBackgroundColor(),
+      //       borderColor: this.isActive ? this.$themes['primary'] : 'transparent',
+      //     }
+      //   } else return {}
+      // },
+      // iconStyles(){
+      //   return (this.isHovered || this.isActive)
+      //     ? { color: this.$themes['primary'] }
+      //     : { color: 'white !important' }
+      // },
+
+    }
+  }
 
 </script>
 
 <style lang="scss">
-@import "../../vuestic-sass/resources/resources";
-.va-sidebar-link-group {
-  flex-direction: column;
-
-  &__submenu {
-    list-style: none;
-    padding-left: 0;
-    width: 100%;
-    overflow: hidden;
-
-    a {
-      font-size: 0.875rem;
-      display: block;
-      padding-left: 2.75rem;
+  @import "../../vuestic-sass/resources/resources";
+  .va-sidebar-link{
+    &:hover {
+      color: white;
+      background-color: $brand-primary;
     }
   }
 
-  .va-sidebar-link__content {
-    width: 100%;
-    position: relative;
-    padding-right: 2rem;
-    display: flex;
-    align-items: center;
-  }
+  .va-sidebar-link-group {
+    flex-direction: column;
 
-  &__expanded-icon {
-    width: 1.5rem;
-    text-align: center;
-  }
 
-  &__dropdown-icon {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    right: .1rem;
-    width: 1.5rem;
-    height: 1.5rem;
-    font-weight: $font-weight-bold;
-    line-height: 1.5rem;
-  }
-
-  &--minimized {
-    .va-dropdown{
-      &__anchor {
-        width: 100%;
-      }
-    }
-    .va-sidebar-link-group__submenu {
-      width: 10rem;
-      border-radius: .375rem;
-      margin-left: 1px;
-      max-height: 80vh;
-      padding: .375rem 0;
-      overflow-y: auto;
-      overflow-x: hidden;
+    &__submenu {
+      list-style: none;
+      padding-left: 0;
+      width: 100%;
+      overflow: hidden;
 
       a {
-        padding: .75rem 1rem;
-        border-left: none;
-        height: auto;
-        min-height: 3rem;
+        font-size: 0.875rem;
+        display: block;
+        padding-left: 2.75rem;
+
       }
     }
-    .va-sidebar-link__after {
+
+    .va-sidebar-link__content {
+      width: 100%;
+      position: relative;
+      padding-right: 2rem;
+      display: contents;
+      align-items: center;
+      color: $gray;
+
+      &:hover {
+        color: white
+      }
+    }
+
+    &__expanded-icon {
+      width: 1.5rem;
+      text-align: center;
+      color: $gray;
+
+      &:hover {
+        color: white
+      }
+    }
+
+    &__dropdown-icon {
       position: absolute;
-      bottom: .4375rem;
-      left: 0;
-      right: 0;
-      height: .1835rem;
-      width: 1.8rem;
-      display: block;
-      margin: 0 auto;
-      line-height: .1835rem;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      right: .1rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      font-weight: $font-weight-bold;
+      line-height: 1.5rem;
+      color: $gray;
+
+      &:hover {
+        color: white
+      }
+
+    }
+
+    &--minimized {
+      .va-dropdown {
+        &__anchor {
+          width: 100%;
+        }
+      }
+
+      .va-sidebar-link-group__submenu {
+        width: 10rem;
+        border-radius: .375rem;
+        margin-left: 1px;
+        max-height: 80vh;
+        padding: .375rem 0;
+        overflow-y: fragments;
+        overflow-x: hidden;
+
+        a {
+          padding: .75rem 1rem;
+          border-left: none;
+          height: auto;
+          min-height: 3rem;
+        }
+      }
+
+      .va-sidebar-link__after {
+        position: absolute;
+        bottom: .4375rem;
+        left: 0;
+        right: 0;
+        height: .1835rem;
+        width: 1.8rem;
+        display: block;
+        margin: 0 auto;
+        line-height: .1835rem;
+      }
     }
   }
-}
+
+
 </style>
+
+<style scope>
+  .collapse.in {
+    display: contents !important;
+  }
+</style>
+

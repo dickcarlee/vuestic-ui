@@ -6,7 +6,7 @@ $light-gray3: #f5f8f9;
 $lighter-gray: #dddddd;
 $charcoal: #555555;
 $darkest-gray: #333333;
-$almost-black: #161616;
+$almost-black: #34495E;
 $hover-black: #222222;
 $vue-green: #4ae387;
 $vue-light-green: #dbf9e8;
@@ -26,17 +26,18 @@ $theme-blue: #4ab2e3;
 $theme-blue-dark: #2c82e0;
 $theme-violet: #db76df;
 $theme-pale: #d9d9d9;
-$brand-primary: $vue-green !default;
-$brand-danger: $theme-red;
-$brand-warning: $theme-orange;
-$brand-info: $theme-blue;
-$brand-success: $vue-green;
-$brand-secondary: #babfc2;
+$brand-primary: #6c7fee;
+$brand-danger: #F8706D;
+$brand-warning: #FFD652;
+$brand-info: #71BAFF;
+$brand-success: #8DDC88;
+$brand-secondary: #6c7fee;
 $light-gray2: #eff4f5;
 $dark-gray: #282828;
-$gray: #adb3b9;
+$gray: #8396A5;
 $dark-blue: #0e4ac4;
 $text-gray: #b4b4b4;
+$dark: #34495E;
 
 $separator-color: #e6e9ec;
 
@@ -44,26 +45,26 @@ $transition-primary: 0.3s cubic-bezier(.25,.8,.50,1); // swing
 $transition-secondary: 0.2s cubic-bezier(0.4, 0.0, 0.6, 1); // ease-in-out
 
 $colors-map: (
-  brand-danger: $brand-danger,
-  brand-primary: $brand-primary,
-  brand-info: $brand-info,
-  brand-success: $brand-success,
-  brand-warning: $brand-warning,
-  black: black,
-  white: white,
-  lighter-gray: $lighter-gray
+        brand-danger: $brand-danger,
+        brand-primary: $brand-primary,
+        brand-info: $brand-info,
+        brand-success: $brand-success,
+        brand-warning: $brand-warning,
+        black: black,
+        white: white,
+        lighter-gray: $lighter-gray
 );
 
 $theme-colors: (
-  "primary": $brand-primary,
-  "secondary": $white,
-  "success": $light-green,
-  "info": $brand-info,
-  "warning": $brand-warning,
-  "danger": $brand-danger,
-  "light": $light-gray2,
-  "dark": $almost-black,
-  "pale": $theme-pale
+        "primary": $brand-primary,
+        "secondary": $white,
+        "success": $light-green,
+        "info": $brand-info,
+        "warning": $brand-warning,
+        "danger": $brand-danger,
+        "light": $light-gray2,
+        "dark": $almost-black,
+        "pale": $theme-pale
 );
 
 // Layout //
@@ -351,18 +352,18 @@ $list-item-padding: 0.5rem 1rem 0.5rem 1.5rem;
 
 // Font sizes for display elements.
 $display-font-sizes: (
-  1: 2.5rem,
-  2: 2rem,
-  3: 1.75rem,
-  4: 1.5rem,
-  5: 1.25rem,
-  6: 1.1rem
+        1: 2.5rem,
+        2: 2rem,
+        3: 1.75rem,
+        4: 1.5rem,
+        5: 1.25rem,
+        6: 1.1rem
 );
 $display-margins: (
-  1: 4.5rem,
-  2: 4rem,
-  3: 3rem,
-  4: 2.5rem,
-  5: 2.25rem,
-  6: 2rem
+        1: 4.5rem,
+        2: 4rem,
+        3: 3rem,
+        4: 2.5rem,
+        5: 2.25rem,
+        6: 2rem
 );
