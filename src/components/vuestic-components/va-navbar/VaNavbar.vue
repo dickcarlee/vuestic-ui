@@ -17,10 +17,10 @@
         <slot></slot>
       </div>
     </div>
-    <div
-      class="va-navbar__shape"
-      :style="shapeStyle"
-    />
+<!--    <div-->
+<!--      class="va-navbar__shape"-->
+<!--      :style="shapeStyle"-->
+<!--    />-->
   </nav>
 </template>
 
